@@ -61,6 +61,6 @@ for i in range (0, numberOfPlayers) :
     for j in range (i+1, numberOfPlayers) :
         temp = playersArray[i][0] + ',' + playersArray[j][0]
         avgScore = (int(playersArray[i][1]) + int(playersArray[j][1]))/2
-        setOfTeams[temp] = avgScore
+        setOfPossibleTeams[temp] = avgScore
 
 print(setOfPossibleTeams)
