@@ -1,31 +1,9 @@
-# You are given N players who want to play a M vs M match. Each Player has an attribute Score which is a
-# positive integer.
-# The program needs to find possible unique matches of M vs M players depending on their Score. The
-# matches should be sorted based on the quality of each match. The quality of the match is defined as the
-# closeness of the scores between the teams.
-# Example for quality
-# Let's say we have 1vs1 matches with the following scoresMatch1 100 vs 98
-# Match2 60 vs 40
-# Match3 62 vs 64
-# The sorted order here would be:
-# Match1, Match3, Match2
-# For matches with multiple players on one side, the average score should be used.
-# InputNumber of players on each side: M
-# Example2
-# Input-
-# <name of player 1> <score>
-# <name of player 2> <score>
-# A blank line denotes end of input.
-# Examplebleh 85
-# Aequitas 90
-# akS 87
-# lamiV 20
-# Outputsorted list of (best to worst)
-# <comma separated list of players in team A>(average score) vs <comma separated list of players in team
-# B>(average score)
-# Examplebleh,akS (86) vs Aequitas,lamiV (55)
-# bleh,Aequitas (87.5) vs akS,lamiV (53.5)
-# bleh,lamiV (52.5) vs Aequitas,akS (88.5)
+# Output : sorted list of (best to worst)
+# <comma separated list of players in team A>(average score) vs <comma separated list of players in team B>(average score)
+# Example : 
+#           bleh,akS (86) vs Aequitas,lamiV (55)
+#           bleh,Aequitas (87.5) vs akS,lamiV (53.5)
+#           bleh,lamiV (52.5) vs Aequitas,akS (88.5)
 
 #Take input of number of players allowed in one team
 playersInEachTeam = int(input('Enter number of players in each team : '))
@@ -52,6 +30,10 @@ if(numberOfPlayers % 2 !=0) :
     print("Number of players must be even to perform M vs M match")
     exit()
 
+if(numberOfPlayers % playersInEachTeam != 0) :
+    print("Invalid details, number of players must be multiple of number of players in each team in order to perform match")
+    exit()
+
 #print(playersArray)
 
 #Get all unique pairs and average scores
@@ -63,8 +45,10 @@ for i in range (1, (2**numberOfPlayers)-1) :
     for j in binaryNumber :
         if j == '1' :
             counter = counter + 1
+    #if number of 1's == no of players in each team, put that string in binaryArray
     if(counter == playersInEachTeam) :
         binaryArray.append(binaryNumber.zfill(numberOfPlayers)) #to keep length of all binary strings equal
+
 
 possibleTeams = {}
 for i in binaryArray :
@@ -79,3 +63,5 @@ for i in binaryArray :
     possibleTeams[name] = score
 
 print(possibleTeams);
+
+#print all M vs M matches
