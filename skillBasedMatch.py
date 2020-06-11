@@ -1,5 +1,3 @@
-# Output : sorted list of (best to worst)
-# <comma separated list of players in team A>(average score) vs <comma separated list of players in team B>(average score)
 # Example : 
 #           bleh,akS (86) vs Aequitas,lamiV (55)
 #           bleh,Aequitas (87.5) vs akS,lamiV (53.5)
@@ -25,9 +23,8 @@ while True :
 
 #validation of number of players
 numberOfPlayers = len(playersArray)
-print(numberOfPlayers)
 if(numberOfPlayers < 2*playersInEachTeam) :
-    print("Invalid details, total number of players must be 2 times number of players in each team")
+    print("Invalid details, total number of players must be at least 2 times number of players in each team")
     exit()
 
 if((numberOfPlayers % (2*playersInEachTeam)) != 0) :
@@ -49,7 +46,6 @@ for i in range (1, (2**numberOfPlayers)-1) :
     #if number of 1's == no of players in each team, put that string in binaryArray
     if(counter == playersInEachTeam) :
         binaryArray.append(binaryNumber.zfill(numberOfPlayers)) #to keep length of all binary strings equal
-
 
 possibleTeams = {}
 for i in binaryArray :
@@ -85,15 +81,31 @@ def getKeyFromValue(val) :
 #let a = [15,20,22,25,28,30], a = sortedAverageScores
 #quality matches will be 25(a[3]) vs 22(a[2]), 28(a[4]) vs 20(a[1]), 30(a[5]) vs 15(a[0])
 
-while len(sortedAverageScores) != 0 :
-    mid = int(len(sortedAverageScores)/2)
-    first = sortedAverageScores[mid]
-    second = sortedAverageScores[mid-1]
+if playersInEachTeam > 1 :
+    while len(sortedAverageScores) != 0 :
+        mid = int(len(sortedAverageScores)/2)
+        first = sortedAverageScores[mid]
+        second = sortedAverageScores[mid-1]
 
-    print(getKeyFromValue(first), "(", first, ")" , " vs ", getKeyFromValue(second), "(", second, ")")
+        print(getKeyFromValue(first), "(", first, ")" , " vs ", getKeyFromValue(second), "(", second, ")")
 
-    sortedAverageScores.remove(first)
-    sortedAverageScores.remove(second)
+        sortedAverageScores.remove(first)
+        sortedAverageScores.remove(second)
 
-    del possibleTeams[getKeyFromValue(first)]
-    del possibleTeams[getKeyFromValue(second)]
+        del possibleTeams[getKeyFromValue(first)]
+        del possibleTeams[getKeyFromValue(second)]
+
+
+if playersInEachTeam == 1 :
+#in this case, there will be more martches
+#e.g a<10>, b<15>, c<20>, d<25> then possible matches :-
+    # a vs b -> diff = 5
+    # b vs  c -> diff = 5
+    # c vs d -> diff = 5
+    # a vs c -> diff = 10
+    # b vs d -> diff = 10
+    # a vs d -> diff = 15
+    #TODO: get matches sorted by quality
+    for i in range (0, len(sortedAverageScores)) :
+        for j in range (i+1, len(sortedAverageScores)) :
+            print(getKeyFromValue(sortedAverageScores[i]), "(", sortedAverageScores[i], ")", " vs ", getKeyFromValue(sortedAverageScores[j]), "(", sortedAverageScores[j], ")")
