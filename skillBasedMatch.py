@@ -7,6 +7,9 @@
 
 #Take input of number of players allowed in one team
 playersInEachTeam = int(input('Enter number of players in each team : '))
+if(playersInEachTeam < 1) :
+    print("No match possible with less than one player")
+    exit()
 
 #empty array to store information of players
 playersArray = []
@@ -26,15 +29,12 @@ if(numberOfPlayers < 2*playersInEachTeam) :
     print("Invalid details, total number of players must be 2 times number of players in each team")
     exit()
 
-if(numberOfPlayers % 2 !=0) :
-    print("Number of players must be even to perform M vs M match")
+if(numberOfPlayers % 2*playersInEachTeam !=0) :
+    print("Number of players must be even and multiple of number of players in each team in order to perform M vs M match")
     exit()
+#eg {a,b,c,d,e,f} and playersInEachTeam =2, 
+#3 teams can be formed but number of teams should be 4 to perform two mathes at a time
 
-if(numberOfPlayers % playersInEachTeam != 0) :
-    print("Invalid details, number of players must be multiple of number of players in each team in order to perform match")
-    exit()
-
-#print(playersArray)
 
 #Get all unique pairs and average scores
 binaryArray = []
