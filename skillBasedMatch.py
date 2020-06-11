@@ -62,11 +62,7 @@ for i in binaryArray :
         counter = counter + 1
     possibleTeams[name] = score
 
-print(possibleTeams);
-
-#print all M vs M matches
-#let a = [15,20,22,25,28,30]
-#quality matches will be 25 vs 22, 28 vs 20, 30 vs 15
+#print(possibleTeams);
 
 #get all average scores and sort
 sortedAverageScores = []
@@ -74,6 +70,7 @@ for i in possibleTeams :
     sortedAverageScores.append(possibleTeams[i])
 
 sortedAverageScores.sort()
+#length of this array will always be even
 
 #average scores are values in possibleTeamss, it can be used to extract keys(i.e teams)
 #extract keys
@@ -82,3 +79,20 @@ def getKeyFromValue(val) :
         if val == value :
             return key
 #print(getKeyFromValue(25));
+
+#print all M vs M matches
+#let a = [15,20,22,25,28,30], a = sortedAverageScores
+#quality matches will be 25(a[3]) vs 22(a[2]), 28(a[4]) vs 20(a[1]), 30(a[5]) vs 15(a[0])
+
+while len(sortedAverageScores) != 0 :
+    mid = int(len(sortedAverageScores)/2)
+    first = sortedAverageScores[mid]
+    second = sortedAverageScores[mid-1]
+
+    print(getKeyFromValue(first), "(", first, ")" , " vs ", getKeyFromValue(second), "(", second, ")")
+
+    sortedAverageScores.remove(first)
+    sortedAverageScores.remove(second)
+
+    del possibleTeams[getKeyFromValue(first)]
+    del possibleTeams[getKeyFromValue(second)]
