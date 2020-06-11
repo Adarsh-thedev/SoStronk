@@ -58,10 +58,27 @@ for i in binaryArray :
     for j in i :
         if j == '1' :
             name = name + playersArray[counter][0] + ','
-            score = int(playersArray[counter][1])/playersInEachTeam
+            score = score + int(playersArray[counter][1])/playersInEachTeam
         counter = counter + 1
     possibleTeams[name] = score
 
 print(possibleTeams);
 
 #print all M vs M matches
+#let a = [15,20,22,25,28,30]
+#quality matches will be 25 vs 22, 28 vs 20, 30 vs 15
+
+#get all average scores and sort
+sortedAverageScores = []
+for i in possibleTeams :
+    sortedAverageScores.append(possibleTeams[i])
+
+sortedAverageScores.sort()
+
+#average scores are values in possibleTeamss, it can be used to extract keys(i.e teams)
+#extract keys
+def getKeyFromValue(val) :
+    for key, value in possibleTeams.items() :
+        if val == value :
+            return key
+#print(getKeyFromValue(25));
