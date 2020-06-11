@@ -52,7 +52,7 @@ for i in binaryArray :
             name = name + playersArray[counter][0] + ','
             score = score + int(playersArray[counter][1])/playersInEachTeam
         counter = counter + 1
-    possibleTeams[name] = score
+    possibleTeams[name[:-1]] = score
 
 
 #get all average scores and sort
