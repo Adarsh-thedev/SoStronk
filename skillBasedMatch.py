@@ -1,8 +1,3 @@
-# Example : 
-#           bleh,akS (86) vs Aequitas,lamiV (55)
-#           bleh,Aequitas (87.5) vs akS,lamiV (53.5)
-#           bleh,lamiV (52.5) vs Aequitas,akS (88.5)
-
 #Take input of number of players allowed in one team
 playersInEachTeam = int(input('Enter number of players in each team : '))
 if(playersInEachTeam < 1) :
@@ -59,7 +54,6 @@ for i in binaryArray :
         counter = counter + 1
     possibleTeams[name] = score
 
-#print(possibleTeams);
 
 #get all average scores and sort
 sortedAverageScores = []
@@ -75,7 +69,7 @@ def getKeyFromValue(val) :
     for key, value in possibleTeams.items() :
         if val == value :
             return key
-#print(getKeyFromValue(25));
+
 
 #print all M vs M matches
 #let a = [15,20,22,25,28,30], a = sortedAverageScores
@@ -87,7 +81,7 @@ if playersInEachTeam > 1 :
         first = sortedAverageScores[mid]
         second = sortedAverageScores[mid-1]
 
-        print(getKeyFromValue(first), "(", first, ")" , " vs ", getKeyFromValue(second), "(", second, ")")
+        print(getKeyFromValue(first), "(", round(first,2), ")" , " vs ", getKeyFromValue(second), "(", round(second,2), ")")
 
         sortedAverageScores.remove(first)
         sortedAverageScores.remove(second)
@@ -97,10 +91,10 @@ if playersInEachTeam > 1 :
 
 
 if playersInEachTeam == 1 :
-#in this case, there will be more martches
+#in this case, there will be more matches
 #e.g a<10>, b<15>, c<20>, d<25> then possible matches :-
     # a vs b -> diff = 5
-    # b vs  c -> diff = 5
+    # b vs c -> diff = 5
     # c vs d -> diff = 5
     # a vs c -> diff = 10
     # b vs d -> diff = 10
