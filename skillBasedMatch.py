@@ -52,15 +52,30 @@ if(numberOfPlayers % 2 !=0) :
     print("Number of players must be even to perform M vs M match")
     exit()
 
-print(playersArray)
-
-setOfPossibleTeams = {}
+#print(playersArray)
 
 #Get all unique pairs and average scores
-for i in range (0, numberOfPlayers) :
-    for j in range (i+1, numberOfPlayers) :
-        temp = playersArray[i][0] + ',' + playersArray[j][0]
-        avgScore = (int(playersArray[i][1]) + int(playersArray[j][1]))/2
-        setOfPossibleTeams[temp] = avgScore
+binaryArray = []
+for i in range (1, (2**numberOfPlayers)-1) :
+    binaryNumber = bin(i).replace("0b", '')
+    #initalize a counter to check if binary number has 1's equal to specified team size
+    counter = 0
+    for j in binaryNumber :
+        if j == '1' :
+            counter = counter + 1
+    if(counter == playersInEachTeam) :
+        binaryArray.append(binaryNumber.zfill(numberOfPlayers)) #to keep length of all binary strings equal
 
-print(setOfPossibleTeams)
+possibleTeams = {}
+for i in binaryArray :
+    counter = 0
+    score = 0
+    name = ''
+    for j in i :
+        if j == '1' :
+            name = name + playersArray[counter][0] + ','
+            score = int(playersArray[counter][1])/playersInEachTeam
+        counter = counter + 1
+    possibleTeams[name] = score
+
+print(possibleTeams);
