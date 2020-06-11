@@ -25,12 +25,13 @@ while True :
 
 #validation of number of players
 numberOfPlayers = len(playersArray)
+print(numberOfPlayers)
 if(numberOfPlayers < 2*playersInEachTeam) :
     print("Invalid details, total number of players must be 2 times number of players in each team")
     exit()
 
-if(numberOfPlayers % 2*playersInEachTeam !=0) :
-    print("Number of players must be even and multiple of number of players in each team in order to perform M vs M match")
+if((numberOfPlayers % (2*playersInEachTeam)) != 0) :
+    print("Number of players must be even and multiple of two times number of players in each team in order to perform M vs M match")
     exit()
 #eg {a,b,c,d,e,f} and playersInEachTeam =2, 
 #3 teams can be formed but number of teams should be 4 to perform two mathes at a time
