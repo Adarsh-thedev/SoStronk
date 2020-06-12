@@ -2,17 +2,14 @@
 def checkTeamSize(teamSize) :
     if(teamSize < 1) :
         raise ValueError("No match possible with less than one player")
-        exit()
 
 #function to validate number of players
 def validateInputs(totalPlayers, playersInOneTeam) :
     if(totalPlayers < 2*playersInOneTeam) :
         raise ValueError("Invalid details, total number of players must be at least 2 times number of players in each team!")
-        exit()
 
     if((totalPlayers % (2*playersInOneTeam)) != 0) :
         raise ValueError("Number of players must be even and multiple of two times number of players in each team in order to perform M vs M match")
-        exit()
     #eg {a,b,c,d,e,f} and playersInEachTeam =2, 
     #3 teams can be formed but number of teams should be 4 to perform two mathes at a time
 
